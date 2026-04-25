@@ -1,0 +1,56 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "LlGFwqH1A0wQxEvI58_gc"
+uri = "file://artifacts/freza-maket/public/images/hero.png"
+type = "image"
+title = "Hero workshop photography"
+
+[[generated]]
+id = "tE_CGRyLWeEc0sAXzE5jH"
+uri = "file://artifacts/freza-maket/public/images/boxes-cat.png"
+type = "image"
+title = "Cardboard boxes stack"
+
+[[generated]]
+id = "qic2bPZau1EjRUcsCLRG7"
+uri = "file://artifacts/freza-maket/public/images/leather-cat.png"
+type = "image"
+title = "Brass leather embossing cliché"
+
+[[generated]]
+id = "7tGerrJgWkH9cQgTmIfAK"
+uri = "file://artifacts/freza-maket/public/images/wood-cat.png"
+type = "image"
+title = "Wood engraving cliché"
+
+[[generated]]
+id = "6J915Iw6AihAB9idbfXgP"
+uri = "file://artifacts/freza-maket/public/images/alphabets-cat.png"
+type = "image"
+title = "Brass stamping alphabet"
+
+[[generated]]
+id = "EpXuJDe7uN3XtWBN96zlE"
+uri = "file://artifacts/freza-maket/public/images/box-shoes.png"
+type = "image"
+title = "Kraft box for shoes"
+
+[[generated]]
+id = "-YCNqBFQPrVk0ppVhrR4N"
+uri = "file://artifacts/freza-maket/public/images/leather-keychain.png"
+type = "image"
+title = "Leather keychain cliché"
+
+[[generated]]
+id = "pqWDIOTpB6si3rRfekSke"
+uri = "file://artifacts/freza-maket/public/images/wood-iron.png"
+type = "image"
+title = "Wood branding iron"
+
+[[generated]]
+id = "El1p2Z0JKF7rL727XeKuo"
+uri = "file://artifacts/freza-maket/public/images/alphabet-premium.png"
+type = "image"
+title = "Premium brass alphabet"

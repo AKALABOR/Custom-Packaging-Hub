@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Freza Maket"
+version = "1.0.0"
+id = "artifacts/freza-maket"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25375
+
+[services.development]
+run = "pnpm --filter @workspace/freza-maket run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/freza-maket", "run", "build" ]
+publicDir = "artifacts/freza-maket/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25375"
+BASE_PATH = "/"
