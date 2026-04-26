@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Slider } from "@/components/ui/slider";
 import { useToast } from "@/hooks/use-toast";
 import { ChevronRight, Upload, Image as ImageIcon, X, Minus, Plus, RotateCw } from "lucide-react";
 import { getImageUrl } from "@/lib/utils";
@@ -33,6 +34,7 @@ export default function ProductPage({ params }: { params: { categoryId: string, 
   // Drag and resize state
   const [pos, setPos] = useState({ x: 0, y: 0 });
   const [scale, setScale] = useState(1);
+  const [rotation, setRotation] = useState({ x: 0, y: 0, z: 0 });
   const isDragging = useRef(false);
   const dragStart = useRef({ x: 0, y: 0 });
   const posStart = useRef({ x: 0, y: 0 });
@@ -67,6 +69,7 @@ export default function ProductPage({ params }: { params: { categoryId: string, 
         setPreviewUrl(e.target?.result as string);
         setPos({ x: 0, y: 0 });
         setScale(1);
+        setRotation({ x: 0, y: 0, z: 0 });
       };
       reader.readAsDataURL(selected);
     } else {
@@ -167,7 +170,7 @@ export default function ProductPage({ params }: { params: { categoryId: string, 
               >
                 <div 
                   className="absolute border border-dashed border-accent/50 p-2 bg-white/20 backdrop-blur-sm cursor-move group touch-none select-none"
-                  style={{ transform: `translate(${pos.x}px, ${pos.y}px) scale(${scale})` }}
+                  style={{ transform: `perspective(1000px) translate(${pos.x}px, ${pos.y}px) scale(${scale}) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg) rotateZ(${rotation.z}deg)` }}
                   onPointerDown={handlePointerDown}
                   onPointerMove={handlePointerMove}
                   onPointerUp={handlePointerUp}
@@ -175,7 +178,7 @@ export default function ProductPage({ params }: { params: { categoryId: string, 
                 >
                   <img src={previewUrl} alt="Logo preview" className="w-[150px] h-[150px] object-contain opacity-80 mix-blend-multiply pointer-events-none select-none" draggable={false} />
                   <div className="absolute bottom-[-24px] left-1/2 -translate-x-1/2 whitespace-nowrap text-[10px] font-mono text-background bg-foreground/50 px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                    (Тягніть або скрольте для зміни розміру)
+                    (Тягніть або скрольте)
                   </div>
                 </div>
               </div>
@@ -189,13 +192,45 @@ export default function ProductPage({ params }: { params: { categoryId: string, 
                 <div className="flex justify-between items-start mb-2">
                   <h3 className="font-serif font-bold text-lg">Приміряти свій логотип</h3>
                   {previewUrl && (
-                    <Button variant="ghost" size="sm" onClick={() => { setPos({x:0, y:0}); setScale(1); }} className="h-8 text-xs px-2">
+                    <Button variant="ghost" size="sm" onClick={() => { setPos({x:0, y:0}); setScale(1); setRotation({x:0,y:0,z:0}); }} className="h-8 text-xs px-2">
                       <RotateCw className="w-3 h-3 mr-1" />
                       Скинути
                     </Button>
                   )}
                 </div>
-                <p className="text-sm text-muted-foreground mb-4">Завантажте зображення (PNG/JPG), щоб побачити як воно виглядатиме на коробці. Можна тягати та змінювати масштаб коліщатком миші.</p>
+                <p className="text-sm text-muted-foreground mb-4">Завантажте зображення (PNG/JPG). Використовуйте повзунки нижче для 3D-налаштування на площині коробки.</p>
+                {previewUrl && (
+                  <div className="space-y-4 mb-6 bg-secondary/20 p-4 rounded-lg border border-border">
+                    <div className="space-y-2">
+                      <div className="flex justify-between text-xs">
+                        <Label className="text-xs">Масштаб</Label>
+                        <span className="text-muted-foreground">{scale.toFixed(2)}x</span>
+                      </div>
+                      <Slider value={[scale]} min={0.2} max={3} step={0.05} onValueChange={([val]) => setScale(val)} />
+                    </div>
+                    <div className="space-y-2">
+                      <div className="flex justify-between text-xs">
+                        <Label className="text-xs">Нахил X (вгору/вниз)</Label>
+                        <span className="text-muted-foreground">{rotation.x}°</span>
+                      </div>
+                      <Slider value={[rotation.x]} min={-80} max={80} step={1} onValueChange={([val]) => setRotation(prev => ({...prev, x: val}))} />
+                    </div>
+                    <div className="space-y-2">
+                      <div className="flex justify-between text-xs">
+                        <Label className="text-xs">Нахил Y (вліво/вправо)</Label>
+                        <span className="text-muted-foreground">{rotation.y}°</span>
+                      </div>
+                      <Slider value={[rotation.y]} min={-80} max={80} step={1} onValueChange={([val]) => setRotation(prev => ({...prev, x: val}))} />
+                    </div>
+                    <div className="space-y-2">
+                      <div className="flex justify-between text-xs">
+                        <Label className="text-xs">Обертання Z</Label>
+                        <span className="text-muted-foreground">{rotation.z}°</span>
+                      </div>
+                      <Slider value={[rotation.z]} min={-180} max={180} step={1} onValueChange={([val]) => setRotation(prev => ({...prev, z: val}))} />
+                    </div>
+                  </div>
+                )}
               </div>
             )}
             
