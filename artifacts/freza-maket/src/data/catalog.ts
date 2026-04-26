@@ -11,6 +11,8 @@ export interface Product {
   photoUrl: string;
   variants: ProductVariant[];
   hasVectors?: boolean;
+  defaultMockupTransform?: { x: number; y: number; z: number; scale: number };
+  clipPath?: string;
 }
 
 export interface Subcategory {
@@ -44,6 +46,8 @@ export const CATALOG: Category[] = [
             id: "box-shoes-standard",
             title: "Коробка стандартна (взуття)",
             photoUrl: "/images/box-shoes.png",
+            defaultMockupTransform: { x: -40, y: -5, z: -15, scale: 0.8 },
+            clipPath: "polygon(22% 8%, 91% 33%, 73% 86%, 0% 50%)",
             variants: [
               { id: "v1", sizeLabel: "30x20x10 см", priceUah: 45 },
               { id: "v2", sizeLabel: "35x25x12 см", priceUah: 55 },
@@ -54,6 +58,8 @@ export const CATALOG: Category[] = [
             id: "box-shoes-high",
             title: "Коробка висока (черевики)",
             photoUrl: "/images/box-shoes.png",
+            defaultMockupTransform: { x: -40, y: -5, z: -15, scale: 0.8 },
+            clipPath: "polygon(22% 8%, 91% 33%, 73% 86%, 0% 50%)",
             variants: [
               { id: "v1", sizeLabel: "35x30x15 см", priceUah: 65 },
               { id: "v2", sizeLabel: "40x35x18 см", priceUah: 85 },
@@ -63,6 +69,8 @@ export const CATALOG: Category[] = [
             id: "box-shoes-kids",
             title: "Коробка дитяча",
             photoUrl: "/images/box-shoes.png",
+            defaultMockupTransform: { x: -40, y: -5, z: -15, scale: 0.8 },
+            clipPath: "polygon(22% 8%, 91% 33%, 73% 86%, 0% 50%)",
             variants: [
               { id: "v1", sizeLabel: "20x15x8 см", priceUah: 30 },
               { id: "v2", sizeLabel: "25x18x10 см", priceUah: 38 },
@@ -78,6 +86,8 @@ export const CATALOG: Category[] = [
             id: "box-bags-small",
             title: "Коробка під міні-сумочку",
             photoUrl: "/images/boxes-cat.png",
+            defaultMockupTransform: { x: -35, y: 15, z: 10, scale: 0.75 },
+            clipPath: "polygon(5% 50%, 45% 10%, 95% 45%, 55% 90%)",
             variants: [
               { id: "v1", sizeLabel: "20x15x8 см", priceUah: 35 },
               { id: "v2", sizeLabel: "25x20x10 см", priceUah: 45 }
@@ -87,6 +97,8 @@ export const CATALOG: Category[] = [
             id: "box-bags-medium",
             title: "Коробка під сумочку (середня)",
             photoUrl: "/images/boxes-cat.png",
+            defaultMockupTransform: { x: -35, y: 15, z: 10, scale: 0.75 },
+            clipPath: "polygon(5% 50%, 45% 10%, 95% 45%, 55% 90%)",
             variants: [
               { id: "v1", sizeLabel: "30x25x12 см", priceUah: 55 },
               { id: "v2", sizeLabel: "35x30x15 см", priceUah: 70 }
@@ -96,6 +108,8 @@ export const CATALOG: Category[] = [
             id: "box-bags-large",
             title: "Коробка під шопер",
             photoUrl: "/images/boxes-cat.png",
+            defaultMockupTransform: { x: -35, y: 15, z: 10, scale: 0.75 },
+            clipPath: "polygon(5% 50%, 45% 10%, 95% 45%, 55% 90%)",
             variants: [
               { id: "v1", sizeLabel: "40x35x15 см", priceUah: 85 },
               { id: "v2", sizeLabel: "45x40x18 см", priceUah: 105 }

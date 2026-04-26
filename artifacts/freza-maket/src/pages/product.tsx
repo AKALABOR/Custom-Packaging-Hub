@@ -68,8 +68,12 @@ export default function ProductPage({ params }: { params: { categoryId: string, 
       reader.onload = (e) => {
         setPreviewUrl(e.target?.result as string);
         setPos({ x: 0, y: 0 });
-        setScale(1);
-        setRotation({ x: 0, y: 0, z: 0 });
+        setScale(product?.defaultMockupTransform?.scale || 1);
+        setRotation({
+          x: product?.defaultMockupTransform?.x || 0,
+          y: product?.defaultMockupTransform?.y || 0,
+          z: product?.defaultMockupTransform?.z || 0
+        });
       };
       reader.readAsDataURL(selected);
     } else {
@@ -166,6 +170,7 @@ export default function ProductPage({ params }: { params: { categoryId: string, 
             {isMockupTool && previewUrl && (
               <div 
                 className="absolute inset-0 flex items-center justify-center overflow-hidden touch-none"
+                style={product.clipPath ? { clipPath: product.clipPath } : undefined}
                 onWheel={handleWheel}
               >
                 <div 
