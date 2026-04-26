@@ -68,11 +68,11 @@ export default function Home() {
             <Link key={category.id} href={`/${category.slug}`} className="group block h-full">
               <Card className="h-full overflow-hidden border-border/50 hover:border-accent transition-colors duration-500 bg-card">
                 <div className="aspect-[16/9] overflow-hidden relative">
-                  <img 
-                    src={category.photoUrl} 
-                    alt={category.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                  />
+ <img 
+  src={getImageUrl(category.photoUrl)} 
+  alt={category.title}
+  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+/>
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
                   <div className="absolute bottom-0 left-0 p-6 text-primary-foreground">
                     <h3 className="text-2xl font-serif font-bold mb-2">{category.title}</h3>
