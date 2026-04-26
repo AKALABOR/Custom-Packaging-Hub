@@ -5,6 +5,7 @@ import { useDocumentTitle } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, ChevronRight } from "lucide-react";
+import { getImageUrl } from "@/lib/utils";
 
 export default function CategoryPage({ params }: { params: { categoryId: string } }) {
   const categoryId = params.categoryId; // "boxes", "leather", "wood", "alphabets"
@@ -47,7 +48,7 @@ export default function CategoryPage({ params }: { params: { categoryId: string 
                   <Card className="h-full overflow-hidden border-border/50 hover:border-accent transition-colors duration-300">
                     <div className="aspect-[4/3] bg-muted relative overflow-hidden">
                       <img 
-                        src={product.photoUrl} 
+                        src={getImageUrl(product.photoUrl)} 
                         alt={product.title} 
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
