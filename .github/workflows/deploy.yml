@@ -1,0 +1,62 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: ["main"] # Замените на master, если ваша основная ветка называется master
+  workflow_dispatch: # Позволяет запускать сборку вручную из интерфейса GitHub
+
+# Выдаем необходимые права для деплоя на GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Запрещаем параллельное выполнение деплоя, чтобы избежать конфликтов
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9 # Укажите версию pnpm, которую используете, если нужна конкретная
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Build project
+        env:
+          # В вашем vite.config.ts эти переменные обязательны, иначе сборка упадет с ошибкой
+          PORT: 3000 # Заглушка, так как для статической сборки порт фактически не используется
+          # Настраиваем BASE_PATH под структуру URL GitHub Pages (/<имя-репозитория>/)
+          BASE_PATH: /${{ github.event.repository.name }}/
+        run: pnpm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Указываем путь к собранной статике, исходя из вашего vite.config.ts (outDir)
+          path: 'artifacts/freza-maket/dist/public'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
