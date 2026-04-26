@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useToast } from "@/hooks/use-toast";
 import { ChevronRight, Upload, Image as ImageIcon, X, Minus, Plus, RotateCw } from "lucide-react";
+import { getImageUrl } from "@/lib/utils";
 
 export default function ProductPage({ params }: { params: { categoryId: string, subcategoryId: string, productId: string } }) {
   const { categoryId, subcategoryId, productId } = params;
@@ -153,7 +154,7 @@ export default function ProductPage({ params }: { params: { categoryId: string, 
         <div className="space-y-6">
           <div className="aspect-[4/3] lg:aspect-square bg-secondary rounded-lg overflow-hidden relative border border-border">
             <img 
-              src={product.photoUrl} 
+              src={getImageUrl(product.photoUrl)} 
               alt={product.title} 
               className="w-full h-full object-cover select-none pointer-events-none"
             />

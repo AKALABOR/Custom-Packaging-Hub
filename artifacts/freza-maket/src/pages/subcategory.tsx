@@ -4,6 +4,7 @@ import { CATALOG } from "@/data/catalog";
 import { useDocumentTitle } from "@/components/layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, ChevronRight } from "lucide-react";
+import { getImageUrl } from "@/lib/utils";
 
 export default function SubcategoryPage({ params }: { params: { categoryId: string, subcategoryId: string } }) {
   const { categoryId, subcategoryId } = params;
@@ -44,7 +45,7 @@ export default function SubcategoryPage({ params }: { params: { categoryId: stri
             <Card className="h-full overflow-hidden border-border/50 hover:border-accent transition-colors duration-300 flex flex-col">
               <div className="aspect-square bg-muted relative overflow-hidden">
                 <img 
-                  src={product.photoUrl} 
+                  src={getImageUrl(product.photoUrl)} 
                   alt={product.title} 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />

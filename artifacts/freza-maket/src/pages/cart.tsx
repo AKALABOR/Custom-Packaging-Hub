@@ -4,6 +4,7 @@ import { useCart } from "@/components/cart-context";
 import { useDocumentTitle } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Trash2, Minus, Plus, ArrowRight, Image as ImageIcon } from "lucide-react";
+import { getImageUrl } from "@/lib/utils";
 
 export default function CartPage() {
   useDocumentTitle("Кошик");
