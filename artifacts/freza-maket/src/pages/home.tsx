@@ -17,11 +17,11 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img 
-            src="/images/hero.png" 
-            alt="Майстерня Freza Maket" 
-            className="w-full h-full object-cover object-center"
-          />
+<img 
+  src={getImageUrl("/images/hero.png")} 
+  alt="Майстерня Freza Maket" 
+  className="w-full h-full object-cover object-center"
+/>
           <div className="absolute inset-0 bg-background/80 md:bg-background/60 backdrop-blur-[2px]"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
         </div>
