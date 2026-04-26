@@ -1,3 +1,4 @@
+import { getImageUrl } from "@/lib/utils";
 import React from "react";
 import { Link } from "wouter";
 import { CATALOG } from "@/data/catalog";
